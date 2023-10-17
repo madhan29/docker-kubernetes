@@ -1,0 +1,39 @@
+server:
+  log_level: info
+
+prometheus:
+  wal_directory: /tmp/wal/
+  global:
+    scrape_interval: 10s
+    remote_write:
+      - url: http://172.17.0.2:9090/api/v1/write
+
+  configs:
+    - name: integrations
+
+integrations:
+  agent:
+    enabled: true
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: '(go_|hikaricp_|jaeger_node_infiniband_|net_conntrack_|agent_metrics_|agent_request_)'
+        action: drop
+
+  windows_exporter:
+    enabled: true      
+
+  node_exporter:
+    enabled: true  # Corrected typo here
+    
+logs:
+  positions_directory: /tmp/positions/
+  configs:
+  - name: default
+    clients:
+    - url: http://loki:3100/loki/api/v1/push
+    scrape_configs:
+    - job_name: csvparser-agent
+      static_configs:
+      - targets:
+        labels:
+          __path__: /var/log/*log

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movieapp
+  labels:
+    app: movieapp
+spec:
+  selector:
+    matchLabels:
+      app: movieapp  
+  template:
+    metadata:
+      name: movieapp
+      labels:
+        app: movieapp  
+    spec:
+      containers:
+        - name: moviebooking
+          image: madhan29/movieapp:v2
+          ports:
+            - containerPort: 8080

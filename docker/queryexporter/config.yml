@@ -1,0 +1,24 @@
+databases:
+  db1:
+    dsn: mysql://root:password@172.17.0.2:3306/mysqltestdb
+    keep-connected: true
+    labels:
+      app: app1 
+
+metrics:
+  #person_firstname_gauge:
+    #type: histogram
+    #description: count by Firstname
+    #buckets: [10, 20, 50, 100]
+    #labels: [PersonID]
+  city_by_count_counter:
+    type: gauge
+    description: count by city 
+    labels: [City] 
+
+queries:
+  query2:
+    interval: 5
+    databases: [db1]
+    metrics: [city_by_count_counter]
+    sql:  select COUNT(*) AS city_by_count_counter,City AS City from Persons Group by city

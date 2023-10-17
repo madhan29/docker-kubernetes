@@ -1,0 +1,17 @@
+server:
+  log_level: warn
+
+prometheus:
+  wal_directory: C:\ProgramData\grafana-agent-wal
+  global:
+    scrape_interval: 60s
+  configs:
+    - name: integrations 
+
+integrations:
+  windows_exporter:
+    enabled: true
+
+  node_exporter:
+    enabled: true
+

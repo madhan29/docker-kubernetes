@@ -1,0 +1,51 @@
+docker run --name=mysql -d -e MYSQL_ROOT_PASSWOR=password mysql/mysql-server 
+
+docker exec -it mysql mysql -uroot -p
+
+CREATE USER 'root'@'%' IDENTIFIED BY 'password';
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+
+Create database mysqltestdb;
+
+CREATE TABLE Persons (
+    PersonID int,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+);
+
+
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (100, 'LN1', 'FN1', 'addr1', 'City1');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (200, 'LN2', 'FN2', 'addr2', 'City2');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (300, 'LN3', 'FN3', 'addr3', 'City3');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (400, 'LN4', 'FN4', 'addr4', 'City4');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (500, 'LN5', 'FN5', 'addr5', 'City5');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (600, 'LN6', 'FN6', 'addr6', 'City6');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (700, 'LN7', 'FN7', 'addr7', 'City7');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (800, 'LN8', 'FN8', 'addr8', 'City8');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (900, 'LN9', 'FN9', 'addr9', 'City9');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (1000, 'LN10', 'FN10', 'addr10', 'City10');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (1001, 'LN10', 'FN9', 'addr4', 'City7');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (1002, 'LN3', 'FN6', 'addr3', 'City5');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (1003, 'LN3', 'FN5', 'addr2', 'City6');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (1003, 'LN2', 'FN5', 'addr1', 'City5');
+INSERT INTO Persons (PersonID, LastName, FirstName, Address, City)
+VALUES (1003, 'LN2', 'FN2', 'addr1', 'City1');
+
+docker run -p 9560:9560/tcp -v "D:\Learning\Docker\query-exporter\config.yaml:/config.yaml" --rm -it adonato/query-exporter:latest

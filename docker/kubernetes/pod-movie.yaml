@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: movieapp-frontend
+  labels: 
+    app: movieapp-frontend
+spec:
+  containers:
+    - name: movieapp-frontend
+      image: madhan29/movieapp-frontend:v1
+      ports:
+        - containerPort: 3000 

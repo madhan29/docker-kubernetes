@@ -1,0 +1,75 @@
+#to pass config files while running a container 
+
+docker run -v C:\Projects\docker\application.conf:/opt/docker/conf/application.conf -d -p 8000:8000  --network=kafka-lag-exporter_default --name lagexporter kafka-lag-exporter
+
+
+#kafka producer 
+
+/opt/kafka/bin/kafka-console-producer.sh --topic newtopic --bootstrap-server localhost:9092
+
+#kafka consumer
+
+/opt/kafka/bin/kafka-console-consumer.sh --topic newtopic --bootstrap-server localhost:9092 --from-beginning
+
+#minikube start error
+
+docker context use default
+
+#expose pod
+
+kubectl expose pod movieapp --port=8080 --target-port=8080 --name=movie-service --type=NodePort
+
+#changing namespaces
+
+kubectl config set-context --current --namespace=default
+
+#prometheus in docker 
+
+docker run -d -p 9090:9090 -v C:\Software\prometheus\prometheus\prometheus.yml:/etc/prometheus/prometheus.yml --name prometheus prom/prometheus
+
+#docker network creation
+
+docker network create new-network
+
+#to run a container in docker network
+
+docker run -d --network=new-network -p 27017:27017 --name movieappmongodb mongo:latest
+
+#run a springboot app on same network
+
+docker run -d --network=new-network --name moviebookingnew -p 8080:8080 moviebooking:v1
+
+#query exporter
+
+docker run -p 9560:9560/tcp -v C:\Projects\docker\config.yml:/config.yaml --rm -it adonato/query-exporter:latest
+
+#grafana agent
+ docker run -p 12345:12345 -d -v C:\Projects\docker\conf-agent:/etc/agent -v C:\Projects\docker\conf-agent\agent.yaml:/etc/agent/agent.yaml grafana/agent
+ 
+ # docker query exporter
+ 
+ docker run -p 9560:9560/tcp -v "C:\Projects\docker\config.yml:/config.yaml" --rm -it adonato/query-exporter:latest
+
+#json exporter
+
+docker run -d -p 7979:7979 -v C:\Projects\docker\jsonexporter\config.yml:/config.yml prometheuscommunity/json-exporter --config.file=/config.yml
+
+#cortex
+
+docker run -d -p 9009:9009 ubuntu/cortex
+
+#docker build
+
+docker build -t your-registry/your-image-name:tag .
+
+#docker push
+
+docker push your-registry/your-image-name:tag
+ 
+
+
+
+
+
+
+
